@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Mother's Day, Mama!</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #fdf8f2;
+    --blush: #f7c5d5;
+    --rose: #e8829a;
+    --deep-rose: #c4506a;
+    --sage: #7a9e7e;
+    --dark-sage: #4a6a4e;
+    --soft-yellow: #f9e87f;
+    --sky: #d6eeff;
+    --cloud-white: #ffffff;
+    --text-dark: #2d2d2d;
+    --text-mid: #6b6b6b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Lato', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 3rem 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(247,197,213,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 50%, rgba(214,238,255,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── DRAWINGS SIDE ── */
+  .drawings-side {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    position: relative;
+  }
+
+  .drawing-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .drawing-wrap.center-drawing { margin-bottom: 2rem; }
+
+  /* ── TEXT SIDE ── */
+  .text-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4rem;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.5s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--deep-rose);
+  }
+
+  .hero-subtitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    max-width: 380px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.7s;
+  }
+
+  .hearts-row {
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.9s;
+  }
+
+  .heart {
+    font-size: 1.4rem;
+    animation: heartbeat 1.6s ease-in-out infinite;
+  }
+  .heart:nth-child(2) { animation-delay: 0.2s; }
+  .heart:nth-child(3) { animation-delay: 0.4s; }
+
+  /* scroll cue */
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.5s;
+    cursor: pointer;
+  }
+  .scroll-cue span {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+  .scroll-arrow {
+    width: 20px; height: 20px;
+    border-right: 1.5px solid var(--rose);
+    border-bottom: 1.5px solid var(--rose);
+    transform: rotate(45deg);
+    animation: bounce 1.4s ease-in-out infinite;
+  }
+
+  /* ── REASONS SECTION ── */
+  .reasons-section {
+    padding: 6rem 5vw 8rem;
+    position: relative;
+  }
+
+  .reasons-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, var(--cream), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--text-dark);
+    line-height: 1.2;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .section-rule {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--blush), var(--rose));
+    margin: 1.2rem auto 0;
+    border-radius: 2px;
+  }
+
+  /* ── CLOUDS GRID ── */
+  .clouds-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cloud-card {
+    position: relative;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+  }
+
+  /* cloud SVG shape via clip-path */
+  .cloud-front,
+  .cloud-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.08));
+  }
+
+  /* cloud puffs using box-shadow */
+  .cloud-front::before,
+  .cloud-back::before {
+    content: '';
+    position: absolute;
+    top: -28%;
+    left: 18%;
+    width: 42%;
+    height: 65%;
+    border-radius: 50%;
+    background: inherit;
+    filter: none;
+  }
+
+  .cloud-front::after,
+  .cloud-back::after {
+    content: '';
+    position: absolute;
+    top: -18%;
+    left: 48%;
+    width: 32%;
+    height: 52%;
+    border-radius: 50%;
+    background: inherit;
+    filter: none;
+  }
+
+  .cloud-front {
+    background: var(--cloud-white);
+    z-index: 2;
+  }
+
+  .cloud-back {
+    background: linear-gradient(135deg, #fde8ef, #fce4f0);
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .cloud-card:hover .cloud-front {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  .cloud-card:hover .cloud-back {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cloud-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--text-mid);
+    font-style: italic;
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .cloud-number {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 0.3rem;
+  }
+
+  .cloud-reason-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--deep-rose);
+    line-height: 1.6;
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    text-align: center;
+    padding: 3rem 1rem 4rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-mid);
+  }
+
+  .footer-hearts { margin-top: 0.8rem; font-size: 1.2rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    30% { transform: scale(1.25); }
+    60% { transform: scale(1); }
+    80% { transform: scale(1.12); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50%       { transform: rotate(45deg) translateY(5px); }
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-9px); }
+  }
+
+  @keyframes sway1 {
+    0%, 100% { transform: rotate(-2.5deg); }
+    50%       { transform: rotate(2.5deg); }
+  }
+
+  @keyframes sway2 {
+    0%, 100% { transform: rotate(2.5deg); }
+    50%       { transform: rotate(-2.5deg); }
+  }
+
+  @keyframes bloom {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.07); }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    50%       { opacity: 0.5; transform: scale(1.3) rotate(20deg); }
+  }
+
+  @keyframes gemGlow {
+    0%, 100% { fill: #3a8ee8; }
+    50%       { fill: #a0cfff; }
+  }
+
+  @keyframes hairSway {
+    0%, 100% { transform: skewX(0deg); }
+    50%       { transform: skewX(2deg); }
+  }
+
+  @keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    30%       { transform: scale(1.2); }
+    60%       { transform: scale(1); }
+    80%       { transform: scale(1.1); }
+  }
+
+  @keyframes sporePop {
+    0%, 100% { r: 4; opacity: 0.7; }
+    50%       { r: 6; opacity: 1; }
+  }
+
+  /* drawing animation classes */
+  .princess-body      { animation: bob 2.8s ease-in-out infinite; transform-origin: center bottom; }
+  .star-wand          { animation: sparkle 1.5s ease-in-out infinite; transform-origin: center center; }
+  .princess-arm-l     { animation: sway1 2.8s ease-in-out infinite; transform-origin: 44% 62%; }
+  .princess-arm-r     { animation: sway2 2.8s ease-in-out infinite; transform-origin: 56% 62%; }
+  .princess-hair-l    { animation: hairSway 2.8s ease-in-out infinite; transform-origin: 40% 55%; }
+  .princess-hair-r    { animation: hairSway 2.8s ease-in-out infinite reverse; transform-origin: 60% 55%; }
+  .princess-gem       { animation: gemGlow 1.8s ease-in-out infinite; }
+  .princess-heart     { animation: heartPulse 1.4s ease-in-out infinite; transform-origin: 50% 50%; }
+
+  .cactus-l           { animation: sway1 3.5s ease-in-out infinite; transform-origin: center bottom; }
+  .cactus-r           { animation: sway2 4s ease-in-out infinite; transform-origin: center bottom; }
+  .flower-l           { animation: bloom 2.5s ease-in-out infinite; transform-origin: center center; }
+  .flower-r           { animation: bloom 2.5s ease-in-out infinite reverse; transform-origin: center center; }
+  .petal-group        { animation: bloom 2.5s ease-in-out infinite; transform-origin: center center; }
+
+  /* touch support for clouds */
+  .cloud-card.revealed .cloud-front { opacity: 0; transform: translateY(-6px); }
+  .cloud-card.revealed .cloud-back  { opacity: 1; transform: translateY(0); }
+
+  /* responsive */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; padding: 3rem 1.5rem 2rem; }
+    .drawings-side { margin-bottom: 2rem; }
+    .text-side { padding-left: 0; text-align: center; align-items: center; }
+    .hero-subtitle { text-align: center; }
+    .clouds-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+
+  <!-- LEFT: three animated drawings -->
+  <div class="drawings-side">
+
+    <!-- Cactus 1 (left) -->
+    <div class="drawing-wrap">
+      <svg class="cactus-l" width="110" viewBox="0 0 160 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- trunk -->
+        <rect x="62" y="120" width="36" height="120" rx="10" fill="#5a7a3a"/>
+        <line x1="73" y1="130" x2="73" y2="232" stroke="#3d5a25" stroke-width="1.5" opacity="0.6"/>
+        <line x1="87" y1="126" x2="87" y2="235" stroke="#3d5a25" stroke-width="1.5" opacity="0.5"/>
+        <!-- left arm -->
+        <rect x="30" y="155" width="36" height="16" rx="7" fill="#5a7a3a"/>
+        <rect x="24" y="162" width="22" height="65" rx="9" fill="#5a7a3a"/>
+        <line x1="33" y1="173" x2="33" y2="218" stroke="#3d5a25" stroke-width="1.2" opacity="0.5"/>
+        <!-- right arm -->
+        <rect x="94" y="168" width="36" height="16" rx="7" fill="#5a7a3a"/>
+        <rect x="105" y="175" width="22" height="58" rx="9" fill="#5a7a3a"/>
+        <line x1="114" y1="184" x2="114" y2="225" stroke="#3d5a25" stroke-width="1.2" opacity="0.5"/>
+        <!-- spores -->
+        <circle cx="72" cy="143" r="3.5" fill="#3d5a25" opacity="0.7"/>
+        <circle cx="89" cy="155" r="3.5" fill="#3d5a25" opacity="0.7"/>
+        <circle cx="76" cy="178" r="3" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="90" cy="195" r="3" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="34" cy="188" r="2.5" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="34" cy="205" r="2.5" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="114" cy="196" r="2.5" fill="#3d5a25" opacity="0.6"/>
+        <!-- ground -->
+        <ellipse cx="80" cy="242" rx="38" ry="8" fill="#4a6a2a" opacity="0.45"/>
+        <!-- flower -->
+        <g class="flower-l">
+          <g opacity="0.95">
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8"/>
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8" transform="rotate(45 80 100)"/>
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8" transform="rotate(90 80 100)"/>
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8" transform="rotate(135 80 100)"/>
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8" transform="rotate(180 80 100)"/>
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8" transform="rotate(225 80 100)"/>
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8" transform="rotate(270 80 100)"/>
+            <ellipse cx="80" cy="72" rx="18" ry="30" fill="#f090b8" transform="rotate(315 80 100)"/>
+          </g>
+          <circle cx="80" cy="100" r="26" fill="#f5d020"/>
+          <circle cx="80" cy="100" r="19" fill="#f0c010"/>
+          <!-- heart center -->
+          <g class="princess-heart">
+            <path d="M80 109 C80 109 67 99 67 91 C67 85 74 81 80 87 C86 81 93 85 93 91 C93 99 80 109 80 109 Z" fill="#e07030"/>
+          </g>
+          <rect x="71" y="117" width="18" height="10" rx="4" fill="#5a7a3a"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Princess (center, raised) -->
+    <div class="drawing-wrap center-drawing">
+      <svg class="princess-body" width="130" viewBox="0 0 200 340" xmlns="http://www.w3.org/2000/svg">
+        <!-- flowing hair left -->
+        <g class="princess-hair-l">
+          <path d="M88 88 Q68 118 64 158 Q60 188 66 218 Q62 238 58 258 Q55 272 60 278" fill="none" stroke="#4a90b8" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <!-- flowing hair right -->
+        <g class="princess-hair-r">
+          <path d="M112 88 Q132 118 136 158 Q139 188 132 218 Q134 238 136 258 Q138 272 133 278" fill="none" stroke="#4a90b8" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <!-- dress swooshes -->
+        <path d="M90 240 Q72 265 64 288 Q58 303 70 307 Q80 309 87 298" fill="none" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M110 240 Q128 265 136 288 Q142 303 130 307 Q120 309 113 298" fill="none" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M87 298 Q100 310 113 298" fill="none" stroke="#4a90b8" stroke-width="2" stroke-linecap="round"/>
+        <!-- dress -->
+        <path d="M92 172 Q76 198 80 228 Q84 250 100 254 Q116 250 120 228 Q124 198 108 172" fill="none" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- legs -->
+        <line x1="94" y1="250" x2="94" y2="290" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="106" y1="250" x2="106" y2="290" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M94 290 Q86 298 82 294 Q78 290 84 286" fill="none" stroke="#4a90b8" stroke-width="2" stroke-linecap="round"/>
+        <path d="M106 290 Q114 298 118 294 Q122 290 116 286" fill="none" stroke="#4a90b8" stroke-width="2" stroke-linecap="round"/>
+        <!-- torso -->
+        <line x1="100" y1="126" x2="100" y2="172" stroke="#4a90b8" stroke-width="3" stroke-linecap="round"/>
+        <!-- shoulders -->
+        <circle cx="88" cy="146" r="3.5" fill="#4a90b8"/>
+        <circle cx="112" cy="146" r="3.5" fill="#4a90b8"/>
+        <!-- arms -->
+        <g class="princess-arm-l">
+          <line x1="88" y1="146" x2="68" y2="170" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="66" cy="172" r="4" fill="none" stroke="#4a90b8" stroke-width="2"/>
+        </g>
+        <g class="princess-arm-r">
+          <line x1="112" y1="146" x2="132" y2="170" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="134" cy="172" r="4" fill="none" stroke="#4a90b8" stroke-width="2"/>
+        </g>
+        <!-- neck -->
+        <line x1="100" y1="108" x2="100" y2="126" stroke="#4a90b8" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- head -->
+        <circle cx="100" cy="88" r="32" fill="none" stroke="#4a90b8" stroke-width="2.5"/>
+        <!-- eyes -->
+        <circle cx="89" cy="83" r="3.5" fill="#4a90b8"/>
+        <circle cx="111" cy="83" r="3.5" fill="#4a90b8"/>
+        <circle cx="100" cy="91" r="1.8" fill="#4a90b8"/>
+        <!-- smile -->
+        <path d="M88 100 Q100 112 112 100" fill="none" stroke="#4a90b8" stroke-width="2" stroke-linecap="round"/>
+        <!-- crown -->
+        <ellipse cx="82" cy="55" rx="11" ry="17" fill="#e060a0" stroke="#8b2070" stroke-width="1"/>
+        <ellipse cx="100" cy="49" rx="12" ry="21" fill="#e060a0" stroke="#8b2070" stroke-width="1"/>
+        <ellipse cx="118" cy="55" rx="11" ry="17" fill="#e060a0" stroke="#8b2070" stroke-width="1"/>
+        <ellipse cx="91" cy="53" rx="9" ry="14" fill="#b03080" stroke="none"/>
+        <ellipse cx="109" cy="53" rx="9" ry="14" fill="#b03080" stroke="none"/>
+        <rect x="72" y="57" width="56" height="7" rx="2" fill="#c040a0" stroke="#8b2070" stroke-width="1"/>
+        <!-- wand star -->
+        <g class="star-wand">
+          <path d="M100 14 L103 23 L113 23 L105 29 L108 38 L100 32 L92 38 L95 29 L87 23 L97 23 Z" fill="#4a90b8" stroke="#2a5a88" stroke-width="0.8"/>
+          <line x1="100" y1="38" x2="100" y2="57" stroke="#4a90b8" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <!-- gem at feet -->
+        <g class="princess-gem">
+          <ellipse cx="100" cy="312" rx="11" ry="8" fill="none" stroke="#e05030" stroke-width="1.8"/>
+          <ellipse cx="100" cy="312" rx="7" ry="5" fill="#3a8ee8"/>
+          <line x1="97" y1="309" x2="99" y2="307" stroke="white" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Cactus 2 (right) -->
+    <div class="drawing-wrap">
+      <svg class="cactus-r" width="100" viewBox="0 0 150 250" xmlns="http://www.w3.org/2000/svg">
+        <!-- trunk -->
+        <rect x="57" y="130" width="36" height="100" rx="10" fill="#5a7a3a"/>
+        <line x1="68" y1="140" x2="68" y2="223" stroke="#3d5a25" stroke-width="1.5" opacity="0.5"/>
+        <line x1="82" y1="136" x2="82" y2="226" stroke="#3d5a25" stroke-width="1.5" opacity="0.5"/>
+        <!-- Y-shape arms -->
+        <rect x="28" y="158" width="30" height="16" rx="7" fill="#5a7a3a"/>
+        <rect x="22" y="165" width="20" height="64" rx="8" fill="#5a7a3a"/>
+        <line x1="30" y1="174" x2="30" y2="222" stroke="#3d5a25" stroke-width="1.2" opacity="0.5"/>
+        <rect x="93" y="158" width="30" height="16" rx="7" fill="#5a7a3a"/>
+        <rect x="109" y="165" width="20" height="64" rx="8" fill="#5a7a3a"/>
+        <line x1="117" y1="174" x2="117" y2="222" stroke="#3d5a25" stroke-width="1.2" opacity="0.5"/>
+        <!-- spores -->
+        <circle cx="67" cy="152" r="3.5" fill="#3d5a25" opacity="0.7"/>
+        <circle cx="83" cy="164" r="3.5" fill="#3d5a25" opacity="0.7"/>
+        <circle cx="71" cy="190" r="3" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="84" cy="208" r="3" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="31" cy="195" r="2.5" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="31" cy="213" r="2.5" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="117" cy="195" r="2.5" fill="#3d5a25" opacity="0.6"/>
+        <circle cx="117" cy="213" r="2.5" fill="#3d5a25" opacity="0.6"/>
+        <!-- ground -->
+        <ellipse cx="75" cy="232" rx="36" ry="8" fill="#4a6a2a" opacity="0.45"/>
+        <!-- flower -->
+        <g class="flower-r">
+          <g opacity="0.95">
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8"/>
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8" transform="rotate(45 75 106)"/>
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8" transform="rotate(90 75 106)"/>
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8" transform="rotate(135 75 106)"/>
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8" transform="rotate(180 75 106)"/>
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8" transform="rotate(225 75 106)"/>
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8" transform="rotate(270 75 106)"/>
+            <ellipse cx="75" cy="80" rx="16" ry="26" fill="#f090b8" transform="rotate(315 75 106)"/>
+          </g>
+          <circle cx="75" cy="106" r="24" fill="#f5d020"/>
+          <circle cx="75" cy="106" r="17" fill="#f0c010"/>
+          <circle cx="75" cy="106" r="7" fill="#e09010"/>
+          <rect x="66" y="122" width="18" height="12" rx="4" fill="#5a7a3a"/>
+        </g>
+      </svg>
+    </div>
+
+  </div><!-- /drawings-side -->
+
+  <!-- RIGHT: text -->
+  <div class="text-side">
+    <p class="eyebrow">for the most wonderful person</p>
+    <h1 class="hero-title">Happy<br><em>Mother's Day,</em><br>Mama!</h1>
+    <p class="hero-subtitle">You fill every day with warmth, laughter, and love. Today we celebrate you — just a little bit of how much you mean to us.</p>
+    <div class="hearts-row">
+      <span class="heart">🌸</span>
+      <span class="heart">💕</span>
+      <span class="heart">🌸</span>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <div class="scroll-cue" onclick="document.querySelector('.reasons-section').scrollIntoView({behavior:'smooth'})">
+    <span>scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+
+</section>
+
+<!-- ══════════════ REASONS ══════════════ -->
+<section class="reasons-section">
+
+  <div class="section-header">
+    <span class="section-tag">from the bottom of our hearts</span>
+    <h2 class="section-title">Reasons We Love <em>Mama</em></h2>
+    <div class="section-rule"></div>
+    <p style="margin-top:1rem;font-size:0.85rem;color:var(--text-mid);letter-spacing:0.05em;">hover (or tap) each cloud to reveal ✨</p>
+  </div>
+
+  <div class="clouds-grid" id="cloudsGrid">
+    <!-- clouds injected by JS -->
+  </div>
+
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="site-footer">
+  <p>Made with all the love in the world, just for you.</p>
+  <div class="footer-hearts">🌸 💕 🌼 💕 🌸</div>
+</footer>
+
+<script>
+  // ── EDIT YOUR REASONS HERE ──────────────────────────────────────────
+  const reasons = [
+    "Your hugs make everything better, no matter what.",
+    "You always know just what to say to make us smile.",
+    "You make the best food in the whole wide world.",
+    "You cheer us on louder than anyone else.",
+    "You stay up late when we need you and wake up early too.",
+    "You make ordinary days feel magical.",
+    "You always have time for one more story.",
+    "You make our home the coziest place on earth.",
+    "You teach us to be kind, brave, and curious.",
+    "You love us unconditionally — every single day.",
+    "You make us feel safe, seen, and so very loved.",
+    "The world is better because you are our Mama.",
+  ];
+  // ────────────────────────────────────────────────────────────────────
+
+  const grid = document.getElementById('cloudsGrid');
+
+  reasons.forEach((text, i) => {
+    const card = document.createElement('div');
+    card.className = 'cloud-card';
+    card.innerHTML = `
+      <div class="cloud-front">
+        <div class="cloud-label">
+          <span class="cloud-number">Reason ${String(i+1).padStart(2,'0')}</span>
+          Hover to reveal…
+        </div>
+      </div>
+      <div class="cloud-back">
+        <p class="cloud-reason-text">${text}</p>
+      </div>
+    `;
+    // touch support
+    card.addEventListener('click', () => card.classList.toggle('revealed'));
+    grid.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
