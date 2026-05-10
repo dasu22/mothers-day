@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Dave, With Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #fdf8f2;
+    --blush: #f7c5d5;
+    --rose: #e8829a;
+    --deep-rose: #c4506a;
+    --sage: #7a9e7e;
+    --text-dark: #2d2d2d;
+    --text-mid: #6b6b6b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Lato', sans-serif;
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 15% 40%, rgba(247,197,213,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 85% 60%, rgba(214,238,255,0.3) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.07), 0 4px 16px rgba(232,130,154,0.1);
+    padding: 4rem 3.5rem;
+    max-width: 620px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.3s;
+  }
+
+  .flower {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 1.5rem;
+    animation: bloom 3s ease-in-out infinite;
+  }
+
+  .eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 1.2rem;
+  }
+
+  .rule {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(to right, var(--blush), var(--rose));
+    border-radius: 2px;
+    margin: 1.4rem auto;
+  }
+
+  .message {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    line-height: 1.9;
+    color: var(--text-dark);
+    font-style: italic;
+  }
+
+  .message p + p {
+    margin-top: 1.4rem;
+  }
+
+  .signature {
+    margin-top: 2.2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--deep-rose);
+  }
+
+  .footer-hearts {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    animation: heartbeat 1.6s ease-in-out infinite;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blush);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .back-link:hover { color: var(--rose); border-color: var(--rose); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bloom {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50%       { transform: scale(1.12) rotate(8deg); }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    30%       { transform: scale(1.2); }
+    60%       { transform: scale(1); }
+    80%       { transform: scale(1.1); }
+  }
+
+  @media (max-width: 520px) {
+    .card { padding: 2.8rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <span class="flower">🌼</span>
+  <p class="eyebrow">a little something just from me</p>
+  <div class="rule"></div>
+
+  <div class="message">
+    <p>I hope you know that you are the most amazing mother and wife, and you deserve to be pampered. I hope you enjoy your day.</p>
+    <p>I always say how lucky we are to have such good and kind kids, and that's a reflection of you.</p>
+    <p>Also… I can't wait for our date night together, just the 2 of us. I'm excited.</p>
+    <p>Happy Mother's Day to the best mom in the world. Love you!</p>
+  </div>
+
+  <p class="signature">— Dave</p>
+
+  <div class="footer-hearts">💕</div>
+
+  <a href="/" class="back-link">← back to the card</a>
+</div>
+
+</body>
+</html>
